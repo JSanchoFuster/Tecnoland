@@ -28,11 +28,13 @@ public class Juego {
     Jugador vGanadores[] = new Jugador[3];
     
     int nMayor = participantes[0].getPuntuacion();
+    int nMayor2 = participantes[0].getPuntuacion();
+    int nMayor3 = participantes[0].getPuntuacion();
     vGanadores[0] = participantes[0];
     
         for (int i = 1; i < participantes.length; i++) {
             
-            if (participantes[i].getPuntuacion() > nMayor){           
+            if (participantes[i].getPuntuacion() >= nMayor){           
             nMayor = participantes[i].getPuntuacion();
             vGanadores[0]=participantes[i];           
             }        
@@ -40,27 +42,27 @@ public class Juego {
         
          for (int i = 1; i < participantes.length; i++) {
             
-            if (participantes[i].getPuntuacion() > nMayor){           
-            nMayor = participantes[i].getPuntuacion();
-            vGanadores[0]=participantes[i];           
+            if ((participantes[i].getPuntuacion() < nMayor) && (participantes[i].getPuntuacion() >= nMayor2)){           
+            nMayor2 = participantes[i].getPuntuacion();
+            vGanadores[1]=participantes[i];           
             }        
         }
          
           for (int i = 1; i < participantes.length; i++) {
             
-            if (participantes[i].getPuntuacion() > nMayor){           
-            nMayor = participantes[i].getPuntuacion();
-            vGanadores[0]=participantes[i];           
+            if ((participantes[i].getPuntuacion() < nMayor2) && (participantes[i].getPuntuacion() >= nMayor3)){           
+            nMayor3 = participantes[i].getPuntuacion();
+            vGanadores[2]=participantes[i];           
             }        
         }
     
-        return null;
+        return vGanadores;
     }
     
     private int buscarHueco(){
     
         for (int i = 0; i < participantes.length; i++) {
-            if(participantes[i] == null){
+            if(getParticipantes()[i] == null){
                 return i;}
             
         }
@@ -77,7 +79,7 @@ public class Juego {
            return false;
        }
        else{
-           participantes[hueco]=Nombre;
+            getParticipantes()[hueco]=Nombre;
            return true;
        }
     
@@ -86,8 +88,8 @@ public class Juego {
     public boolean puntosJugador(int puntos,String nombre){
     
         for (int i = 0; i < participantes.length; i++) {
-          if ((participantes[i]!=null)&&(participantes[i].getNombre().equalsIgnoreCase(nombre))){
-              participantes[i].setPuntuacion(puntos);
+          if ((getParticipantes()[i]!=null)&&(getParticipantes()[i].getNombre().equalsIgnoreCase(nombre))){
+                getParticipantes()[i].setPuntuacion(puntos);
               return true;
           }
         }
@@ -96,9 +98,43 @@ public class Juego {
     }
     
     public String verJugadores(){
-    
-    
-        return null;
+        
+        String jugadores="";
+            
+        for (int i = 0; i < participantes.length; i++) {
+            jugadores+=getParticipantes()[i].getNombre() + "|" + getParticipantes()[i].getEdad() + "\n";
+        }
+        
+        return jugadores;
+        
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the participantes
+     */
+    public Jugador[] getParticipantes() {
+        return participantes;
+    }
+
+    /**
+     * @param participantes the participantes to set
+     */
+    public void setParticipantes(Jugador[] participantes) {
+        this.participantes = participantes;
     }
     
     
