@@ -6,6 +6,8 @@
 package gittecnoland;
 
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -97,7 +99,13 @@ public class Inicio {
                 int num;
                 System.out.println("Nombre del juego a seleccionar");
                 nombre = juego.nextLine();
-                Juego juegoSeleccionado = t1.seleccionarJuego(nombre);
+                Juego juegoSeleccionado=null;
+                
+                try {
+                    juegoSeleccionado = t1.seleccionarJuego(nombre);
+                } catch (Exception ex) {
+                    System.out.println("Este juego no existe");
+                }
                 
                 while ((juegoSeleccionado!=null)&&(salir2==false)){
                 

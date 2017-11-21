@@ -32,7 +32,7 @@ public class Tecnoland {
         return juegos;
     }
     
-    public Juego seleccionarJuego(String nombreJuego){
+    public Juego seleccionarJuego(String nombreJuego) throws Exception{
         
         for (int i = 0; i < vJuegos.length; i++) {
             if (vJuegos[i].getNombre().equalsIgnoreCase(nombreJuego)){
