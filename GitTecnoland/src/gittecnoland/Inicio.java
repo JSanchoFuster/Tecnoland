@@ -6,8 +6,6 @@
 package gittecnoland;
 
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -58,6 +56,8 @@ public class Inicio {
     }
        
     public static void main(String[] args) {
+        
+        try {
     
         boolean salir=false, salir2=false;
         
@@ -168,12 +168,16 @@ public class Inicio {
                 salir=true;
                 break;
             default: 
+                System.out.println("Esta opcion no existe");
                 break;
         
        }
       }
     
-  
+        }catch (Exception ex){
+            System.out.println("Error");
+        }
+        
     }
     
 }
