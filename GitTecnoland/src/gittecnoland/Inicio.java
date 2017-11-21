@@ -12,8 +12,9 @@ import java.util.Scanner;
  * @author alumno
  */
 public class Inicio {
-
-       public static int pintaMenu(){
+   
+    
+    public static int pintaMenu(){
         int opcion;
         Scanner sc = new Scanner(System.in);
         
@@ -59,10 +60,14 @@ public class Inicio {
         boolean salir=false, salir2=false;
         
         Scanner juego = new Scanner(System.in);
+        Scanner participante = new Scanner(System.in);
+        Scanner edad = new Scanner(System.in);
         
         int opcionMenu,opcionMenuJuego;
         
-        Jugador j1 = new Jugador("jose",19);
+        Jugador j1 = new Jugador("jose",19,20);
+        Jugador j3 = new Jugador("javier",18,50);
+        Jugador j4 = new Jugador("juan",29,10);
         Jugador j2 = new Jugador("juan",25);
         
         Juego fifa = new Juego("FIFA");
@@ -71,11 +76,12 @@ public class Inicio {
         Tecnoland t1 = new Tecnoland(2017);
         
         fifa.anadirParticipante(j1);
+        fifa.anadirParticipante(j3);
+        fifa.anadirParticipante(j4);
         cod.anadirParticipante(j2);
         
         t1.anadirJuego(fifa);
         t1.anadirJuego(cod);
-        
         
         
         while (salir==false){
@@ -92,20 +98,54 @@ public class Inicio {
                 System.out.println("Nombre del juego a seleccionar");
                 nombre = juego.nextLine();
                 Juego juegoSeleccionado = t1.seleccionarJuego(nombre);
-                while (salir==false){
+                
+                while ((juegoSeleccionado!=null)&&(salir2==false)){
                 
                     opcionMenuJuego=pintaMenuJuego();
                 
                     switch (opcionMenuJuego) {
-                            case 1:    
+                            case 1: 
+                                Jugador ganadores[] =juegoSeleccionado.ganadores();
+                                for (Jugador jugador:ganadores){
+                                    System.out.println(jugador);
+                                }
                                 break;
-                            case 2:    
+                            case 2:
+                                String participantes;
+                                int edadPar;
+                                System.out.print("NOMBRE------>");
+                                participantes=participante.nextLine();
+                                System.out.println(" ");
+                                System.out.print("EDAD------>");
+                                edadPar=edad.nextInt();
+                                System.out.println(" ");
+                                Jugador p1 = new Jugador(participantes,edadPar);
+                                if (juegoSeleccionado.anadirParticipante(p1)==true){
+                                    System.out.println("El jugador " + participantes + " se ha añadido");
+                                }else{
+                                    System.out.println("No se ha podido añadir el participante " + participantes);
+                                }
                                 break;
-                            case 3:    
+                            case 3:  
+                                String nombrePar;
+                                int puntos;
+                                System.out.print("NOMBRE------>");
+                                nombrePar=participante.nextLine();
+                                System.out.println(" ");
+                                System.out.print("PUNTOS------>");
+                                puntos=edad.nextInt();
+                                System.out.println(" ");
+                                if (juegoSeleccionado.puntosJugador(puntos, nombrePar)==true){
+                                    System.out.println("Puntos agregados correctamente a " + nombrePar);
+                                }else{
+                                    System.out.println("No hay ningún participante con el nombre " + nombrePar);
+                                }
                                 break;
-                            case 4:    
+                            case 4:
+                                System.out.println(juegoSeleccionado.verJugadores());
                                 break;
-                            case 5:    
+                            case 5: 
+                                salir2=true;
                                 break;          
                     }
                 }

@@ -17,6 +17,7 @@ public class Tecnoland {
     public Tecnoland(int edicion) {
         this.edicion = edicion;
         this.vJuegos = new Juego[5];
+        
     }
     
     public String verJuegos(){

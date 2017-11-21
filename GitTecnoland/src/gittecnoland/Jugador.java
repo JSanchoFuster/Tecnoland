@@ -22,6 +22,11 @@ public class Jugador {
         this.nombre = nombre;
         this.edad = edad;
     }
+    public Jugador(String nombre, int edad, int puntuacion) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.puntuacion = puntuacion;
+    }
 
     /**
      * @return the nombre

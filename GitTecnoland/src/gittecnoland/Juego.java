@@ -5,6 +5,7 @@
  */
 package gittecnoland;
 
+
 /**
  *
  * @author alumno
@@ -28,33 +29,50 @@ public class Juego {
     Jugador vGanadores[] = new Jugador[3];
     
     int nMayor = participantes[0].getPuntuacion();
-    int nMayor2 = participantes[0].getPuntuacion();
-    int nMayor3 = participantes[0].getPuntuacion();
+    int nMayor2 =0;
+    int nMayor3 =0;
     vGanadores[0] = participantes[0];
     
         for (int i = 1; i < participantes.length; i++) {
             
-            if (participantes[i].getPuntuacion() >= nMayor){           
+            if ((participantes[i]!=null)&&(participantes[i].getPuntuacion() >= nMayor)){           
             nMayor = participantes[i].getPuntuacion();
             vGanadores[0]=participantes[i];           
-            }        
-        }
+            } 
+        }    
         
          for (int i = 1; i < participantes.length; i++) {
             
-            if ((participantes[i].getPuntuacion() < nMayor) && (participantes[i].getPuntuacion() >= nMayor2)){           
-            nMayor2 = participantes[i].getPuntuacion();
-            vGanadores[1]=participantes[i];           
-            }        
-        }
+            if ((participantes[i]!=null)&&(participantes[i].getPuntuacion() >= nMayor)){           
+            nMayor = participantes[i].getPuntuacion();
+            vGanadores[0]=participantes[i];           
+            } 
+        }  
          
-          for (int i = 1; i < participantes.length; i++) {
+        for (int i = 0; i < participantes.length; i++) {
+                
+                if ((participantes[i]!=null)&&(participantes[i].getPuntuacion()>nMayor2)&&(participantes[i].getPuntuacion()<nMayor)){
+                    
+                    vGanadores[1]=participantes[i];
+                    nMayor2 = participantes[i].getPuntuacion();
+                    
+                }
+                
+         }
+        
+        for (int i = 0; i < participantes.length; i++) {
+                
+                if ((participantes[i]!=null)&&(participantes[i].getPuntuacion()>nMayor3)&&(participantes[i].getPuntuacion()<nMayor2)){
+                    
+                    vGanadores[2]=participantes[i];
+                    nMayor3 = participantes[i].getPuntuacion();
+                    
+                }
+                
+         }
             
-            if ((participantes[i].getPuntuacion() < nMayor2) && (participantes[i].getPuntuacion() >= nMayor3)){           
-            nMayor3 = participantes[i].getPuntuacion();
-            vGanadores[2]=participantes[i];           
-            }        
-        }
+       
+
     
         return vGanadores;
     }
@@ -102,8 +120,10 @@ public class Juego {
         String jugadores="";
             
         for (int i = 0; i < participantes.length; i++) {
-            jugadores+=getParticipantes()[i].getNombre() + "|" + getParticipantes()[i].getEdad() + "\n";
-        }
+            if (participantes[i]!=null){
+            jugadores+=getParticipantes()[i].getNombre() + "|" + getParticipantes()[i].getEdad() + "|" + getParticipantes()[i].getPuntuacion() + "\n";
+            }
+            }
         
         return jugadores;
         
