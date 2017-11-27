@@ -5,6 +5,9 @@
  */
 package gittecnoland;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 
 /**
  *
@@ -23,6 +26,16 @@ public class Juego {
     public Juego(String nombre, Jugador[] participantes) {
         this.nombre = nombre;
         this.participantes = participantes;
+    }
+    
+    public Jugador[] ganadores (int i){
+        Jugador vGanadores[] = new Jugador[3];
+        Arrays.sort(participantes, Collections.reverseOrder());
+        for (int j = 0; j < 3; j++) {
+            vGanadores[i] = participantes[i];
+        }
+     
+        return vGanadores;
     }
     
     public Jugador[] ganadores(){
@@ -107,7 +120,7 @@ public class Juego {
     
         for (int i = 0; i < participantes.length; i++) {
           if ((getParticipantes()[i]!=null)&&(getParticipantes()[i].getNombre().equalsIgnoreCase(nombre))){
-                getParticipantes()[i].setPuntuacion(puntos);
+                getParticipantes()[i].setPuntuacion(puntos+(participantes[i].getPuntuacion()));
               return true;
           }
         }
